@@ -6,7 +6,7 @@
     "npm": "5.6.0"
   },
   "scripts": {
-    "start": "node ./routes/index.js"
+    "start": "node ./index.js"
   },
   "dependencies": {
     "express": "~4.16.0",
