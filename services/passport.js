@@ -8,7 +8,7 @@ passport.serializeUser((user, done) => {
     done(null, user.id); // db uid
 });
 
-passport.deserializeUser((id, done) =>{
+passport.deserializeUser((id, done) => {
     dbUser.findById(id)
         .then(user => {
             done(null, user);
@@ -21,20 +21,34 @@ passport.use(new googleStrategy({
         callbackURL: '/auth/google/callback',
         proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
 
-        dbUser.findOne({googleId: profile.id})
-            .then((existingUser) => {
+    /*function fetchAlbums() {
+        fetch('http://rallycoding.herokuapp.com/api/music_albums')
+            .then(res => res.json())
+            .then(json => console.log(json))
 
-                if (existingUser) {
+       async function fetchAlbums(){
+        const res = await fetch('http://rallycoding.herokuapp.com/api/music_albums');
+        const json = await res.json();
+        console.log(json);
+       }
 
-                    done(null, existingUser);
-                } else {
+       below fun same
 
-                    new dbUser({googleId: profile.id}).save()
-                        .then(user => done(null,user));
-                }
-            })
+       async function fnName(){     ---->      const fnName = async() =>{
+    }*/
+
+    async (accessToken, refreshToken, profile, done) => {
+
+        const existingUser = await dbUser.findOne({googleId: profile.id});
+
+        if (existingUser) {
+            return done(null, existingUser);
+        }
+
+        const user = await new dbUser({googleId: profile.id}).save();
+        done(null, user);
+
 
     })
 );
