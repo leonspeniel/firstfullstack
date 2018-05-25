@@ -9,6 +9,9 @@ const Landing = () =>{
                 Survey Service
             </h1>
             Collect feedback from users
+            <li key="10" style={{marginLeft: '16px'}}>
+            <a href="/api/boxfiles"><button className="btn">Try Box</button></a>
+            </li>
         </div>
     );
 };
