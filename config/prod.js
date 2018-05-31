@@ -8,5 +8,6 @@ module.exports = {
     stripePublicKey: process.env.STRIPE_PUBLIC_KEY,
     stripeSecretKey: process.env.STRIPE_SECRET_KEY,
     boxPublicKey:process.env.BOX_PUBLIC_KEY,
-    boxSecretKey:process.env.BOX_SECRET_KEY
+    boxSecretKey:process.env.BOX_SECRET_KEY,
+    sendGridKey:process.env.SEND_GRID_KEY
 };
